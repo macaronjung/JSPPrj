@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 기본 설정에서 인코딩(웹 포함) 변경 필수!!! -->
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -8,11 +9,15 @@
 
 	<!-- 17강 사용자 입력을 통한 GET 요청 -->
 	<div>
-		<form action="hello">
+		<!-- action 에 서블릿 매핑 주소 입력 -->
+		<!-- 즉 요청이 액션 안에 있는 녀석에게 감 -->
+		<form action="hi">
 			<div>
 				<label>"안녕하세요"를 몇 번 듣고 싶어?</label>
 			</div><!-- 2div end -->
 			<div>
+				<!-- name 속성이 가장 중요!!! -->
+				<!-- 입력된 값이 있으면 네임을 기준으로 쿼리 값 작성 -->
 				<input type="text" name="cnt"></input>
 				<input type="submit" value="출력" />
 			</div><!-- 3div end -->
