@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 기본 설정에서 인코딩(웹 포함) 변경 필수!!! -->
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 18강 입력할 내용이 많은 경우는 POST 요청 -->
+	<div>
+		<!-- action 에 서블릿 매핑 주소 입력 -->
+		<!-- notice-reg 서블릿 생성 필요!!! -->
+		<!-- 18강 메소드 방식 지정 -->
+		<!-- 아무런 값이 없으면 기본값은 쿼리스트링으로 전송 -->
+		<!-- post 사용시 쿼리스트링으로 전송안함 -->
+		<!-- 문서의 요청바디(크기 제한 없음)안으로 내용 전송  -->
+		<!-- 개발자도구->네트워크->파일클릭->Headers->Form Data->View -->
+		<!-- 지금은 한글 입력시 내용 깨짐 -->
+		<form action="notice-reg" method="post">
+			<div>
+				<!-- 18강 인풋 추가 -->
+				<!-- 네임값이 키워드가 되므로 언제나 중요!!! -->
+				<label>제목 : </label>
+				<input name="title" type="text">
+			</div><!-- 2div end -->
+			<div>
+				<!-- 18강 텍스트에어리어 추가 -->
+				<label>내용 : </label>
+				<!-- 한줄이 아닌 여러 내용 입력이라 에어리어 추가 -->
+				<textarea name="content" rows="10" cols="30"></textarea>
+			</div><!-- 3div end -->
+			<div>
+				<input type="submit" value="등록" />
+			</div><!-- 4div end -->
+		</form>
+	</div><!-- 1main end -->
+</body>
+</html>
