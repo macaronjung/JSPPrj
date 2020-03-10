@@ -32,7 +32,8 @@ public class NoticeReg extends HttpServlet {
 		
 		// 19강 서버 설정을 손대지 않고 인코딩 방식 변경(서블릿)
 		// 우리가 utf-8로 포스트해도 톰캣은 ISO-8859-1 인코딩 방식 사용
-		request.setCharacterEncoding("utf-8");
+		//request.setCharacterEncoding("utf-8");		
+		// 20강 서블릿마다 입력하기보다는 필터 이용하여 일괄적용
 		
 		PrintWriter out = response.getWriter();
 		
