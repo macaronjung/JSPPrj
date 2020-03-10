@@ -30,6 +30,10 @@ public class NoticeReg extends HttpServlet {
 		// 위에서 utf-8로 보내니까 너는 utf-8로 읽어라
 		response.setContentType("text/html; charset=utf-8");
 		
+		// 19강 서버 설정을 손대지 않고 인코딩 방식 변경(서블릿)
+		// 우리가 utf-8로 포스트해도 톰캣은 ISO-8859-1 인코딩 방식 사용
+		request.setCharacterEncoding("utf-8");
+		
 		PrintWriter out = response.getWriter();
 		
 		// 18강 전달받는 값의 이름(네임)을 수정
