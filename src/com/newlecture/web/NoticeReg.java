@@ -35,6 +35,7 @@ public class NoticeReg extends HttpServlet {
 		//request.setCharacterEncoding("utf-8");		
 		// 20강 서블릿마다 입력하기보다는 필터 이용하여 일괄적용
 		
+		//클라이언트에 출력(즉, 브라우저에 뭔가를 보내는 것)은 "PrintWriter"라는 클래스를 이용
 		PrintWriter out = response.getWriter();
 		
 		// 18강 전달받는 값의 이름(네임)을 수정
