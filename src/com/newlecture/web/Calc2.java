@@ -8,17 +8,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 //어노테이션 수정 반드시 실시!!!
 @WebServlet({ "/Calc2", "/calc2" })
 public class Calc2 extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-			//26강 값을 저장하는 녀석은 무엇??
-			//어플리케이션 저장소(v_ 와 op 를 저장할 공간)
+			//어플리케이션->말 그대로 어플리케이션 전역에 사용가능
 			ServletContext application = request.getServletContext();
-		
+			//27강 세션 객체로 상태 값 저장
+			//세션->세션 범주 내(현재 접속한 사용자)에서 사용가능
+			//사용자 별로 내용이 달라질 수 있음
+			//최근 프로그램은 프로세스를 다중으로 실행하지 않고 하위 쓰레드로 처리
+			//->크롬에서 작업했으면 세션이 크롬에 남아있음
+			//세션 변수화
+			HttpSession session = request.getSession();
+			
+			
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("text/html; charset=utf-8");
 			
@@ -29,33 +36,27 @@ public class Calc2 extends HttpServlet {
 			int v = 0;
 			if(!v_.equals("")) v = Integer.parseInt(v_);
 			
-			//일단 op의 역할 설정하기->계산하기
 			if(op.equals("=")) {
-				//x값 앞에서 저장했던값(저장소에서 꺼낸 값)
-				//저장소에 값을 저장하는 것 말고도 값을 꺼내오는 작업을 해야됨
-				//그냥 쓰면 오류 남->값을 오브젝트로 값을 반환하기 때문에
-				//int x = application.getAttribute("value");
-				//래퍼 클래스로 해결
-				int x = (Integer)application.getAttribute("value");
-				//y값 지금 사용자가 전달한 밸류 값
+				//어플리케이션 객체 사용한 것 주석처리
+				//int x = (Integer)application.getAttribute("value");
+				int x = (Integer)session.getAttribute("value");
+
 				int y = v;
-				//지금 저장한 값과 전달한 값을 가지고 덧셈을 할껀지
-				//뺄셈을 할껀지 사용자가 지정한 값을 가지고 설정해야됨
-				String operator = (String)application.getAttribute("op");;
+				//String operator = (String)application.getAttribute("op");;
+				String operator = (String)session.getAttribute("op");;
 				int result = 0;
 				
-				if(operator.equals("+")) {
+				if(operator.equals("+")) 
 					result = x + y;
-				} else {
+			    else 
 				    result = x - y;
-				    //값을 출력->앞에서 저장했던 어플리케이션 값을 꺼내서 연산
 					response.getWriter().printf("result is %d\n", result);
-				}
+				
 			} else {
-				//값을 저장하기(저장소에 담기)
-				//키와 값을 설정(맵 컬렉션과 동일)-설정된 값을 저장(나중에 꺼내쓰겠다)
-				application.setAttribute("value", v);
-				application.setAttribute("op", op);
+				//application.setAttribute("value", v);
+				//application.setAttribute("op", op);
+				session.setAttribute("value", v);
+				session.setAttribute("op", op);
 			}
 
 	}
